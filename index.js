@@ -20,3 +20,13 @@ const targetDir = process.argv[2] || process.cwd();
  * Loop through each resolved item and check if it's a directory or file, then log
  */
 
+
+fs.readdir(targetDir, async (err, filenames) => {
+    if(err){
+        throw new Error(err)
+    }
+    const allPromises = filenames.map(file => {
+        return lstat(path.join(targetDir, file));
+    });
+
+});
