@@ -29,4 +29,16 @@ fs.readdir(targetDir, async (err, filenames) => {
         return lstat(path.join(targetDir, file));
     });
 
+        const allStatsResolved = await Promise.all(allPromises);
+       
+        for(let stats of allStatsResolved){
+            const index = allStatsResolved.indexOf(stats);
+             if(stats.isFile()){
+                 console.log(chalk.blue(filenames[index], stats.isFile()));
+
+             }else {
+                console.log(chalk.bold(filenames[index]));
+             }
+        }
+
 });
